@@ -1,0 +1,77 @@
+quarkus:
+  config:
+    locations: application-secrets.yaml
+
+  datasource:
+    db-kind: postgresql
+    username: quarkus
+    password: quarkus
+
+  http:
+    idle-timeout: 60M
+    read-timeout: 60M
+    port: 8082
+    cors:
+      enabled: true
+      origins: /http:\/\/localhost:\d+\//
+      methods: GET,PUT,POST,DELETE
+
+  hibernate-orm:
+    schema-management:
+      strategy: drop-and-create
+      create-schemas: true
+
+  log:
+    level: INFO
+    category:
+      "si.bratusa":
+        level: DEBUG
+
+  transaction-manager:
+    default-transaction-timeout: PT15M
+
+  langchain4j:
+    openai:
+      log-requests: true
+      log-responses: true
+
+"%test":
+  quarkus:
+    datasource:
+      devservices:
+        enabled: true
+        image-name: postgres:16-alpine
+        port: 5434
+      username: quarkus
+      password: quarkus
+      # jdbc:
+      #   url: jdbc:postgresql://localhost:5433/quarkus
+    hibernate-orm:
+      schema-management:
+        strategy: drop-and-create
+
+"%dev":
+  quarkus:
+    datasource:
+      devservices:
+        enabled: true
+        image-name: postgres:16-alpine
+        port: 5433
+      username: quarkus
+      password: quarkus
+      # jdbc:
+      #   url: jdbc:postgresql://localhost:5433/quarkus
+    hibernate-orm:
+      schema-management:
+        strategy: update
+
+"%prod":
+  quarkus:
+    datasource:
+      jdbc:
+        url: jdbc:postgresql://localhost:5432/quarkus
+      username: quarkus
+      password: quarkus
+    hibernate-orm:
+      schema-management:
+        strategy: none
