@@ -1,4 +1,4 @@
-package si.dbratusa.cashflow.impl;
+package si.dbratusa.cashflow.service;
 
 import java.time.LocalDate;
 import java.util.List;
