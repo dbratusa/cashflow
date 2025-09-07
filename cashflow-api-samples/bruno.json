@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "cashflow-api-samples",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

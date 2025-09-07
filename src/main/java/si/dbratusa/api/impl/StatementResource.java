@@ -1,4 +1,4 @@
-package si.dbratusa;
+package si.dbratusa.api.impl;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.BadRequestException;
@@ -7,11 +7,15 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
+import si.dbratusa.api.service.impl.BankStatement;
+import si.dbratusa.CustMediaType;
+import si.dbratusa.api.service.impl.StatementAiService;
 
 @Path("/ai/statement")
 public class StatementResource {
 
-	@Inject StatementAiService ai;
+	@Inject
+	StatementAiService ai;
 
 	// Accept text/csv OR plain text with the CSV content
 	@POST

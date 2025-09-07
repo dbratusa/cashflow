@@ -1,4 +1,4 @@
-package si.dbratusa;
+package si.dbratusa.api.service.impl;
 
 import java.time.LocalDate;
 import java.util.List;
