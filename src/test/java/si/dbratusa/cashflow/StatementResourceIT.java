@@ -1,4 +1,4 @@
-package si.dbratusa;
+package si.dbratusa.cashflow;
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;

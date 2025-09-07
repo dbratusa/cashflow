@@ -1,4 +1,4 @@
-package si.dbratusa.api.impl;
+package si.dbratusa.cashflow.api.impl;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.BadRequestException;
@@ -7,9 +7,9 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import si.dbratusa.api.service.impl.BankStatement;
-import si.dbratusa.CustMediaType;
-import si.dbratusa.api.service.impl.StatementAiService;
+import si.dbratusa.cashflow.impl.BankStatement;
+import si.dbratusa.cashflow.CustMediaType;
+import si.dbratusa.cashflow.impl.StatementAiService;
 
 @Path("/ai/statement")
 public class StatementResource {

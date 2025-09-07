@@ -1,4 +1,4 @@
-package si.dbratusa;
+package si.dbratusa.cashflow;
 
 public interface CustMediaType {
 
