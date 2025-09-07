@@ -1,7 +1,4 @@
 quarkus:
-  config:
-    locations: application-secrets.yaml
-
   datasource:
     db-kind: postgresql
     username: quarkus
@@ -24,7 +21,7 @@ quarkus:
   log:
     level: INFO
     category:
-      "si.bratusa":
+      "si.dbratusa":
         level: DEBUG
 
   transaction-manager:
@@ -34,6 +31,8 @@ quarkus:
     openai:
       log-requests: true
       log-responses: true
+      api-key: ${OPENAI_API_KEY}
+      model-name: gpt-5-nano
 
 "%test":
   quarkus:
