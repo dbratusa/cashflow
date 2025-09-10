@@ -1,0 +1,26 @@
+<div id="aliases">
+    <table class="min-w-full border">
+        <thead class="bg-gray-100">
+        <tr>
+            <th class="p-2 border text-left">Alias</th>
+            <th class="p-2 border text-left">Plan</th>
+            <th class="p-2 border text-left">Fingerprint</th>
+        </tr>
+        </thead>
+        <tbody>
+        {#for a in aliases}
+        <tr class="border">
+            <td class="p-2 border">{a.alias}</td>
+            <td class="p-2 border">
+                {#if a.planId}
+                <span>{a.planId}</span>
+                {#else}
+                <span class="text-gray-500">pending…</span>
+                {/if}
+            </td>
+            <td class="p-2 border">{a.headerFingerprint ?: "—"}</td>
+        </tr>
+        {/for}
+        </tbody>
+    </table>
+</div>

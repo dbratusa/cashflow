@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Cashflow</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-6">
+<h1 class="text-2xl font-bold mb-4">Bank CSV Import</h1>
+
+<form class="flex gap-3 items-center mb-6"
+      hx-post="/ui"
+      hx-encoding="multipart/form-data"
+      hx-swap="none">
+    <input class="border p-2" type="file" name="file" accept=".csv,text/csv" required />
+    <input class="border p-2" type="text" name="fileName" placeholder="alias (optional)"/>
+    <button class="bg-black text-white px-4 py-2 rounded">Upload</button>
+</form>
+
+<div id="aliases"
+     hx-get="/ui/aliases"
+     hx-trigger="load, every 2s"
+     hx-target="#aliases"
+     hx-swap="outerHTML">
+    {#include ui_aliases aliases=aliases /}
+</div>
+</body>
+</html>
