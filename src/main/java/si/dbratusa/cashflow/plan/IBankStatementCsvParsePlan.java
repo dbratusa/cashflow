@@ -2,12 +2,6 @@ package si.dbratusa.cashflow.plan;
 
 public interface IBankStatementCsvParsePlan {
 
-	String name();
-
-	default String getName() {
-		return name();
-	}
-
 	String headerFingerprint();
 
 	default String getHeaderFingerprint() {

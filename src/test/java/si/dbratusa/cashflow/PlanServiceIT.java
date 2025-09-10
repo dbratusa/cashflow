@@ -41,7 +41,6 @@ public class PlanServiceIT {
 	public void testPlanGeneration() {
 		var parsePlan = planService.generatePlan("test_plan", SAMPLE_CSV);
 		assertNotNull(parsePlan);
-		assertEquals("test_plan", parsePlan.name());
 		assertEquals(";", parsePlan.delimiter());
 		assertEquals("UTF-8", parsePlan.charset());
 		assertEquals(0, parsePlan.headerRowIndex());

@@ -59,7 +59,6 @@ class StatementResourceIT {
 
 		var plan = planService.findByName("statement-2025-09.csv");
 		assertNotNull(plan);
-		assertEquals("statement-2025-09.csv", plan.name());
 		assertEquals(";", plan.delimiter());
 		assertEquals("UTF-8", plan.charset());
 		assertEquals(0, plan.headerRowIndex());

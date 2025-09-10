@@ -3,7 +3,6 @@ package si.dbratusa.cashflow.service;
 import si.dbratusa.cashflow.plan.IBankStatementCsvParsePlan;
 
 public record BankStatementCsvParsePlanDTO(
-	String name,
 	String headerFingerprint,
 	String charset,
 	String delimiter,
@@ -25,7 +24,6 @@ public record BankStatementCsvParsePlanDTO(
 			return null;
 		}
 		return new BankStatementCsvParsePlanDTO(
-			plan.name(),
 			plan.headerFingerprint(),
 			plan.charset(),
 			plan.delimiter(),

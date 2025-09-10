@@ -8,10 +8,14 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "BANK_STATEMENT_CSV_PARSE_PLAN", uniqueConstraints = @UniqueConstraint(name = "UK_BS_PARSE_PLAN_NAME", columnNames = "name"))
+@Table(
+	name = "BANK_STATEMENT_CSV_PARSE_PLAN",
+	uniqueConstraints = {
+		@UniqueConstraint(name = "UK_PLAN_FINGERPRINT", columnNames = "headerFingerprint")
+	}
+)
 public class BankStatementCsvParsePlan extends PanacheEntity implements IBankStatementCsvParsePlan {
 
-	private String name;
 	private String headerFingerprint;
 	private String charset;
 	private String delimiter;
@@ -32,22 +36,7 @@ public class BankStatementCsvParsePlan extends PanacheEntity implements IBankSta
 	}
 
 	@Override
-	@Column(name = "name", nullable = false, unique = true)
-	public String getName() {
-		return name;
-	}
-
-	@Override
-	public String name() {
-		return getName();
-	}
-
-	public void setName(final String name) {
-		this.name = name;
-	}
-
-
-	@Override
+	@Column(nullable = false, unique = true)
 	public String getHeaderFingerprint() {
 		return headerFingerprint;
 	}
