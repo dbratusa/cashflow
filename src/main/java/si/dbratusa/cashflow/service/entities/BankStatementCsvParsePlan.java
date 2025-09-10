@@ -1,4 +1,4 @@
-package si.dbratusa.cashflow.plan;
+package si.dbratusa.cashflow.service.entities;
 
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
@@ -6,6 +6,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import si.dbratusa.cashflow.service.IBankStatementCsvParsePlan;
 
 @Entity
 @Table(

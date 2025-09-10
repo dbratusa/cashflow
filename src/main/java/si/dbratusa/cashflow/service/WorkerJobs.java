@@ -1,6 +1,6 @@
 package si.dbratusa.cashflow.service;
 
-public interface Jobs {
+public interface WorkerJobs {
 
 	String IMPORT_BANK_STATEMENT = "jobs.import-bank-statement";
 }

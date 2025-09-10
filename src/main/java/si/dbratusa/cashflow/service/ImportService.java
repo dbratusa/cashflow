@@ -13,6 +13,6 @@ public class ImportService {
 
 	public void enqueueImportBankStatement(final String payload, final String fileName) {
 		var opts = new DeliveryOptions().addHeader("fileName", fileName);
-		this.bus.publish(Jobs.IMPORT_BANK_STATEMENT, payload, opts);
+		this.bus.publish(WorkerJobs.IMPORT_BANK_STATEMENT, payload, opts);
 	}
 }

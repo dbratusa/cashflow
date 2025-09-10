@@ -1,4 +1,4 @@
-package si.dbratusa.cashflow.plan;
+package si.dbratusa.cashflow.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

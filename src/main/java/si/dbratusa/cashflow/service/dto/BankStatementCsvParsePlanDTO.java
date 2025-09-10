@@ -1,6 +1,6 @@
-package si.dbratusa.cashflow.service;
+package si.dbratusa.cashflow.service.dto;
 
-import si.dbratusa.cashflow.plan.IBankStatementCsvParsePlan;
+import si.dbratusa.cashflow.service.IBankStatementCsvParsePlan;
 
 public record BankStatementCsvParsePlanDTO(
 	String headerFingerprint,

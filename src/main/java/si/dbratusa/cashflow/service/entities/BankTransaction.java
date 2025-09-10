@@ -1,4 +1,4 @@
-package si.dbratusa.cashflow.plan;
+package si.dbratusa.cashflow.service.entities;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
@@ -29,5 +29,5 @@ public class BankTransaction extends PanacheEntity {
 
 	@ManyToOne(optional = false)
 	@JoinColumn(name = "plan_id")
-	public si.dbratusa.cashflow.plan.BankStatementCsvParsePlan plan;
+	public BankStatementCsvParsePlan plan;
 }

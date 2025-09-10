@@ -7,7 +7,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import org.jboss.resteasy.reactive.RestForm;
 import org.jboss.resteasy.reactive.multipart.FileUpload;
-import si.dbratusa.cashflow.plan.PlanService;
+import si.dbratusa.cashflow.service.PlanService;
 
 import java.nio.file.Files;
 import java.nio.charset.StandardCharsets;

@@ -7,7 +7,7 @@ import io.restassured.http.ContentType;
 import jakarta.inject.Inject;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import si.dbratusa.cashflow.plan.PlanService;
+import si.dbratusa.cashflow.service.PlanService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

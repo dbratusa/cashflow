@@ -1,10 +1,12 @@
-package si.dbratusa.cashflow.plan;
+package si.dbratusa.cashflow.service;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import si.dbratusa.cashflow.ai.PlanAiService;
-import si.dbratusa.cashflow.service.BankStatementCsvParsePlanDTO;
+import si.dbratusa.cashflow.service.dto.BankStatementCsvParsePlanDTO;
+import si.dbratusa.cashflow.service.entities.BankStatementCsvParsePlan;
+import si.dbratusa.cashflow.service.entities.BankStatementCsvParsePlanAlias;
 
 @ApplicationScoped
 public class PlanService {

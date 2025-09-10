@@ -8,7 +8,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
-import si.dbratusa.cashflow.service.BankStatementEnqueueDTO;
+import si.dbratusa.cashflow.service.dto.BankStatementEnqueueDTO;
 import si.dbratusa.cashflow.service.ImportService;
 
 @Path("/statement")

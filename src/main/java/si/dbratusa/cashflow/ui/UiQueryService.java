@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import jakarta.transaction.Transactional;
-import si.dbratusa.cashflow.plan.BankStatementCsvParsePlan;
-import si.dbratusa.cashflow.plan.BankStatementCsvParsePlanAlias;
+import si.dbratusa.cashflow.service.entities.BankStatementCsvParsePlan;
+import si.dbratusa.cashflow.service.entities.BankStatementCsvParsePlanAlias;
 import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped

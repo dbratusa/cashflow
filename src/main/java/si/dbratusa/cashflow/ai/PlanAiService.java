@@ -4,7 +4,7 @@ import dev.langchain4j.service.SystemMessage;
 import dev.langchain4j.service.UserMessage;
 import io.quarkiverse.langchain4j.RegisterAiService;
 import jakarta.enterprise.context.ApplicationScoped;
-import si.dbratusa.cashflow.plan.BankStatementCsvParsePlan;
+import si.dbratusa.cashflow.service.entities.BankStatementCsvParsePlan;
 
 @RegisterAiService
 @ApplicationScoped
