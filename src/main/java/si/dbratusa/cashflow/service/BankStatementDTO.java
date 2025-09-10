@@ -3,7 +3,7 @@ package si.dbratusa.cashflow.service;
 import java.time.LocalDate;
 import java.util.List;
 
-public record BankStatement(
+public record BankStatementDTO(
 	String bankName,
 	String accountIban,
 	String accountHolder,
@@ -12,5 +12,5 @@ public record BankStatement(
 	LocalDate periodTo,
 	Double openingBalance,
 	Double closingBalance,
-	List<BankTransaction> transactions
+	List<BankTransactionDTO> transactions
 ) {}

@@ -5,9 +5,17 @@ meta {
 }
 
 post {
-  url: localhost:8082/ai/statement
-  body: none
+  url: http://localhost:8082/ai/statement
+  body: text
   auth: inherit
+}
+
+body:text {
+   Datum knjiženja;Valuta;Opis;Protistranka;IBAN;Znesek;Valuta
+              2025-08-01;2025-08-01;Nakup Mercator;;SI56123400000000000;-23,45;EUR
+              2025-08-02;2025-08-02;Nakazilo plača;Podjetje d.o.o.;SI56000099999999999;1500,00;EUR
+              2025-08-03;2025-08-03;SEPA kreditno plačilo;Janez Novak;SI56000011111111111;100,00;EUR
+              2025-08-04;2025-08-04;Provizija;;SI56123400000000000;-0,45;EUR
 }
 
 settings {

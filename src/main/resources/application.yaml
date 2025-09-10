@@ -3,6 +3,9 @@ quarkus:
     db-kind: postgresql
     username: quarkus
     password: quarkus
+  rest-client:
+    connect-timeout: 100000
+    read-timeout: 100000
 
   http:
     idle-timeout: 60M
@@ -31,8 +34,10 @@ quarkus:
     openai:
       log-requests: true
       log-responses: true
+      timeout: 60000
       api-key: ${OPENAI_API_KEY}
-      model-name: gpt-5-nano
+      chat-model:
+        model-name: gpt-5-nano
 
 "%test":
   quarkus:

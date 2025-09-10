@@ -9,15 +9,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import si.dbratusa.cashflow.plan.PlanService;
 
-import java.time.Duration;
-
-import static io.restassured.RestAssured.given;
-import static org.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+
 @QuarkusTest
-class StatementResourceIT {
+public class PlanServiceIT {
 
 	@Inject
 	PlanService planService;
@@ -41,33 +38,18 @@ class StatementResourceIT {
             """;
 
 	@Test
-	void testStatementResourceReturnsPlan() {
-		given()
-			.contentType("text/csv; charset=UTF-8")
-			.header("X-File-Name", "statement-2025-09.csv")
-			.body(SAMPLE_CSV)
-			.when()
-			.post("/statement")
-			.then()
-			.statusCode(200);
-
-		await()
-			.atMost(Duration.ofSeconds(30))
-			.pollDelay(Duration.ofMillis(100))     // initial delay
-			.pollInterval(Duration.ofMillis(250))  // poll cadence
-			.until(() -> planService.findByName("statement-2025-09.csv") != null);
-
-		var plan = planService.findByName("statement-2025-09.csv");
-		assertNotNull(plan);
-		assertEquals("statement-2025-09.csv", plan.name());
-		assertEquals(";", plan.delimiter());
-		assertEquals("UTF-8", plan.charset());
-		assertEquals(0, plan.headerRowIndex());
-		assertEquals("yyyy-MM-dd", plan.dateFormatPattern());
-		assertEquals(",", plan.decimalSeparator());
-		assertEquals("", plan.thousandSeparator());
-		assertEquals(5, plan.amountColumnIndex());
-		assertEquals(2, plan.transactionDescriptionColumnIndex());
-		assertEquals(0, plan.bookingDateColumnIndex());
+	public void testPlanGeneration() {
+		var parsePlan = planService.generatePlan("test_plan", SAMPLE_CSV);
+		assertNotNull(parsePlan);
+		assertEquals("test_plan", parsePlan.name());
+		assertEquals(";", parsePlan.delimiter());
+		assertEquals("UTF-8", parsePlan.charset());
+		assertEquals(0, parsePlan.headerRowIndex());
+		assertEquals("yyyy-MM-dd", parsePlan.dateFormatPattern());
+		assertEquals(",", parsePlan.decimalSeparator());
+		assertEquals("", parsePlan.thousandSeparator());
+		assertEquals(5, parsePlan.amountColumnIndex());
+		assertEquals(2, parsePlan.transactionDescriptionColumnIndex());
+		assertEquals(0, parsePlan.bookingDateColumnIndex());
 	}
 }

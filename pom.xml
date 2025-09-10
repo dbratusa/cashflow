@@ -13,6 +13,7 @@
         <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
         <quarkus.platform.version>3.26.2</quarkus.platform.version>
         <org.apache.commons.commons-csv.version>1.10.0</org.apache.commons.commons-csv.version>
+        <org.awaitility.awaitility>4.3.0</org.awaitility.awaitility>
         <surefire-plugin.version>3.5.3</surefire-plugin.version>
         <skipITs>true</skipITs>
     </properties>
@@ -35,6 +36,12 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>${org.awaitility.awaitility}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-csv</artifactId>

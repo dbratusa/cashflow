@@ -2,7 +2,7 @@ package si.dbratusa.cashflow.service;
 
 import java.time.LocalDate;
 
-public record BankTransaction(
+public record BankTransactionDTO(
 	LocalDate bookingDate,
 	LocalDate valueDate,
 	String description,
