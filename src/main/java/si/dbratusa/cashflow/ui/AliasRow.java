@@ -1,11 +1,12 @@
 package si.dbratusa.cashflow.ui;
 
 import java.time.Instant;
+import java.util.UUID;
 
 public record AliasRow(
-	Long aliasId,
+	UUID aliasId,
 	String alias,             // filename
-	Long planId,
+	UUID planId,
 	String headerFingerprint,
 	Instant updatedAt
 ) {}
