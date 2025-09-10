@@ -12,6 +12,9 @@ public class PlanService {
 	@Inject
 	PlanAiService planAi;
 
+	@Inject
+	TransactionImportService txImport;
+
 	@Transactional(Transactional.TxType.REQUIRED)
 	public IBankStatementCsvParsePlan generatePlan(final String name, final String csv) {
 		var draft = planAi.proposePlanWithName(name, csv);
@@ -30,19 +33,22 @@ public class PlanService {
 					a.persist();
 					return a;
 				});
+			txImport.parseAndPersist(csv, java.nio.charset.StandardCharsets.UTF_8, plan);
 			return BankStatementCsvParsePlanDTO.from(plan);
+		} else {
+			draft.setHeaderFingerprint(fingerprint);
+			draft.persist();
+			BankStatementCsvParsePlanAlias.find("alias", name)
+				.firstResultOptional()
+				.orElseGet(() -> {
+					var a = new BankStatementCsvParsePlanAlias();
+					a.alias = name;
+					a.plan = draft;
+					a.persist();
+					return a;
+				});
 		}
-		draft.setHeaderFingerprint(fingerprint);
-		draft.persist();
-		BankStatementCsvParsePlanAlias.find("alias", name)
-			.firstResultOptional()
-			.orElseGet(() -> {
-				var a = new BankStatementCsvParsePlanAlias();
-				a.alias = name;
-				a.plan = draft;
-				a.persist();
-				return a;
-			});
+		txImport.parseAndPersist(csv, java.nio.charset.StandardCharsets.UTF_8, draft);
 		return BankStatementCsvParsePlanDTO.from(draft);
 	}
 
