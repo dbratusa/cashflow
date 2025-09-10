@@ -14,6 +14,7 @@ import jakarta.persistence.UniqueConstraint;
 		@UniqueConstraint(name = "UK_PLAN_FINGERPRINT", columnNames = "headerFingerprint")
 	}
 )
+@SuppressWarnings("unused")
 public class BankStatementCsvParsePlan extends PanacheEntity implements IBankStatementCsvParsePlan {
 
 	private String headerFingerprint;
