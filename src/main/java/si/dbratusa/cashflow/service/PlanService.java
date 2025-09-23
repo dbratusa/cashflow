@@ -15,7 +15,7 @@ public class PlanService {
 	PlanAiService planAi;
 
 	@Inject
-	TransactionImportService txImport;
+	TransactionService txImport;
 
 	@Transactional(Transactional.TxType.REQUIRED)
 	public IBankStatementCsvParsePlan generatePlan(final String name, final String csv) {

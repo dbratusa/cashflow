@@ -5,9 +5,11 @@ import io.restassured.RestAssured;
 import io.restassured.config.EncoderConfig;
 import io.restassured.http.ContentType;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import si.dbratusa.cashflow.service.PlanService;
+import si.dbratusa.cashflow.service.TransactionService;
 
 import java.time.Duration;
 
@@ -21,6 +23,9 @@ class StatementResourceIT {
 
 	@Inject
 	PlanService planService;
+
+	@Inject
+	TransactionService txService;
 
 	@BeforeAll
 	static void restAssuredUtf8() {
@@ -41,6 +46,7 @@ class StatementResourceIT {
             """;
 
 	@Test
+	@Transactional
 	void testStatementResourceReturnsPlan() {
 		given()
 			.contentType("text/csv; charset=UTF-8")
@@ -68,5 +74,8 @@ class StatementResourceIT {
 		assertEquals(5, plan.amountColumnIndex());
 		assertEquals(2, plan.transactionDescriptionColumnIndex());
 		assertEquals(0, plan.bookingDateColumnIndex());
+
+		var statement = txService.getStatement("statement-2025-09.csv");
+		assertEquals(4, statement.transactions.size());
 	}
 }

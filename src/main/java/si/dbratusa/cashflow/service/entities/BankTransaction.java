@@ -1,7 +1,10 @@
 package si.dbratusa.cashflow.service.entities;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.ForeignKey;
 import jakarta.persistence.Index;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
@@ -15,10 +18,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "BANK_TRANSACTION",
+@Table(
+	name = "BANK_TRANSACTION",
 	indexes = {
 		@Index(name = "IDX_TX_PLAN_DATE", columnList = "plan_id, bookingDate")
-	})
+	}
+)
 public class BankTransaction extends CashflowBaseEntity {
 
 	@Column(nullable = false)
@@ -44,7 +49,8 @@ public class BankTransaction extends CashflowBaseEntity {
 	@JoinColumn(name="account_id")
 	public BankAccount account;
 
-	@ManyToOne @JoinColumn(name="statement_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "statement_id", foreignKey = @ForeignKey(name="fk_tx_statement"))
 	public BankStatement statement;
 
 	@ManyToOne @JoinColumn(name="category_id")
