@@ -1,6 +1,5 @@
 package si.dbratusa.cashflow.service.entities;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,7 +28,7 @@ public class BankTransaction extends CashflowBaseEntity {
 	@Column(nullable = false)
 	public LocalDate bookingDate;
 
-	@Column(precision = 19, scale = 4, nullable = false)
+	@Column(precision = 19, scale = 2, nullable = false)
 	public BigDecimal amount;
 
 	@Column(length = 12)

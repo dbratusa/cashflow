@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import si.dbratusa.cashflow.service.PlanService;
 import si.dbratusa.cashflow.service.TransactionService;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 
 import static io.restassured.RestAssured.given;
@@ -77,5 +78,13 @@ class StatementResourceIT {
 
 		var statement = txService.getStatement("statement-2025-09.csv");
 		assertEquals(4, statement.transactions.size());
+		assertEquals(BigDecimal.valueOf(-23.45).setScale(2), statement.transactions.get(0).amount);
+		assertEquals("Nakup Mercator", statement.transactions.get(0).description);
+		assertEquals(BigDecimal.valueOf(1500.00).setScale(2), statement.transactions.get(1).amount);
+		assertEquals("Nakazilo plača", statement.transactions.get(1).description);
+		assertEquals(BigDecimal.valueOf(100.00).setScale(2), statement.transactions.get(2).amount);
+		assertEquals("SEPA kreditno plačilo", statement.transactions.get(2).description);
+		assertEquals(BigDecimal.valueOf(-0.45).setScale(2), statement.transactions.get(3).amount);
+		assertEquals("Provizija", statement.transactions.get(3).description);
 	}
 }
