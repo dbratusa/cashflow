@@ -19,7 +19,8 @@ public class PlanService {
 
 	@Transactional(Transactional.TxType.REQUIRED)
 	public IBankStatementCsvParsePlan generatePlan(final String name, final String csv) {
-		var draft = planAi.proposePlanWithName(name, csv);
+		var linesForIdentifyingThePlan = firstLines(csv, 10);
+		var draft = planAi.proposePlanWithName(name, linesForIdentifyingThePlan);
 		draft.setHeaderFingerprint(null);
 		var fingerprint = PlanHasher.fingerprint(draft);
 		var plan = BankStatementCsvParsePlan.<BankStatementCsvParsePlan>
@@ -52,6 +53,12 @@ public class PlanService {
 		}
 		txImport.parseAndPersist(csv, java.nio.charset.StandardCharsets.UTF_8, draft);
 		return BankStatementCsvParsePlanDTO.from(draft);
+	}
+
+	public static String firstLines(String csv, int n) {
+		return csv.lines()
+			.limit(n)
+			.collect(java.util.stream.Collectors.joining("\n"));
 	}
 
 	@Transactional(Transactional.TxType.REQUIRED)
