@@ -1,15 +1,11 @@
 package si.dbratusa.cashflow.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.HexFormat;
 import java.util.Objects;
 
 public class PlanHasher {
-
-	private static final ObjectMapper mapper = new ObjectMapper();
 
 	public static String fingerprint(final IBankStatementCsvParsePlan plan) {
 		try {
