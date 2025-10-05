@@ -3,12 +3,11 @@ package si.dbratusa.cashflow.service;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import si.dbratusa.cashflow.service.entities.BankStatement;
+import si.dbratusa.cashflow.service.entities.BankStatementCsvParsePlan;
 import si.dbratusa.cashflow.service.entities.BankStatementCsvParsePlanAlias;
 import si.dbratusa.cashflow.service.entities.BankTransaction;
-import si.dbratusa.cashflow.service.entities.BankStatementCsvParsePlan;
 
 import java.nio.charset.Charset;
-import java.util.List;
 
 @ApplicationScoped
 public class TransactionService {
@@ -18,7 +17,7 @@ public class TransactionService {
 		return BankStatement.find("fileName", fileName).firstResult();
 	}
 
-	@Transactional
+	@Transactional(Transactional.TxType.REQUIRED)
 	public void parseAndPersist(String csv,
 							   Charset charset,
 							   IBankStatementCsvParsePlan planEntity) {

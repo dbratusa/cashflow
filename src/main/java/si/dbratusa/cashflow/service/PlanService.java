@@ -23,36 +23,28 @@ public class PlanService {
 		var draft = planAi.proposePlanWithName(name, linesForIdentifyingThePlan);
 		draft.setHeaderFingerprint(null);
 		var fingerprint = PlanHasher.fingerprint(draft);
-		var plan = BankStatementCsvParsePlan.<BankStatementCsvParsePlan>
-				find("headerFingerprint", fingerprint)
-			.firstResult();
+		var plan = BankStatementCsvParsePlan.<BankStatementCsvParsePlan> find("headerFingerprint", fingerprint).firstResult();
 		if (plan != null) {
-			BankStatementCsvParsePlanAlias.find("alias", name)
-				.firstResultOptional()
-				.orElseGet(() -> {
-					var a = new BankStatementCsvParsePlanAlias();
-					a.alias = name;
-					a.plan = plan;
-					a.persist();
-					return a;
-				});
-			txImport.parseAndPersist(csv, java.nio.charset.StandardCharsets.UTF_8, plan);
-			return BankStatementCsvParsePlanDTO.from(plan);
+			return getBankStatementCsvParsePlanDTO(name, csv, plan);
 		} else {
 			draft.setHeaderFingerprint(fingerprint);
 			draft.persist();
-			BankStatementCsvParsePlanAlias.find("alias", name)
-				.firstResultOptional()
-				.orElseGet(() -> {
-					var a = new BankStatementCsvParsePlanAlias();
-					a.alias = name;
-					a.plan = draft;
-					a.persist();
-					return a;
-				});
+			return getBankStatementCsvParsePlanDTO(name, csv, draft);
 		}
-		txImport.parseAndPersist(csv, java.nio.charset.StandardCharsets.UTF_8, draft);
-		return BankStatementCsvParsePlanDTO.from(draft);
+	}
+
+	private BankStatementCsvParsePlanDTO getBankStatementCsvParsePlanDTO(final String name, final String csv, final BankStatementCsvParsePlan plan) {
+		BankStatementCsvParsePlanAlias.find("alias", name)
+			.firstResultOptional()
+			.orElseGet(() -> {
+				var a = new BankStatementCsvParsePlanAlias();
+				a.alias = name;
+				a.plan = plan;
+				a.persist();
+				return a;
+			});
+		txImport.parseAndPersist(csv, java.nio.charset.StandardCharsets.UTF_8, plan);
+		return BankStatementCsvParsePlanDTO.from(plan);
 	}
 
 	public static String firstLines(String csv, int n) {
